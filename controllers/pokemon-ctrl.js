@@ -13,7 +13,27 @@ module.exports = {
       res.status(201).json({
         success: true,
         message: "Pokemon Created",
-        row,
+        data: {
+          id: row._id,
+          name: row.name,
+          species: {
+            url:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+            pokemonName: "ivysaur",
+          },
+          types: [
+            {
+              type: {
+                name: "grass",
+              },
+            },
+            {
+              type: {
+                name: "poison",
+              },
+            },
+          ],
+        },
       });
     } catch (error) {
       res.status(400).json({
@@ -26,11 +46,34 @@ module.exports = {
   async GetAll(req, res) {
     try {
       const data = await Pokemon.find();
+      const result = data.map((item) => {
+        return {
+          id: item._id,
+          name: item.name,
+          species: {
+            url:
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+            pokemonName: "ivysaur",
+          },
+          types: [
+            {
+              type: {
+                name: "grass",
+              },
+            },
+            {
+              type: {
+                name: "poison",
+              },
+            },
+          ],
+        };
+      });
 
       res.status(200).json({
         success: true,
         message: "All Pokemons Data Retrieved",
-        data,
+        result,
       });
     } catch (error) {
       res.status(400).json({
