@@ -12,19 +12,19 @@ module.exports = {
 
       res.status(201).json({
         success: true,
-        message: "Pokemon Created",
+        message: "You Got a Pokemon",
         data: {
           id: row._id,
           name: row.name,
           species: {
             url:
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-            pokemonName: "ivysaur",
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            pokemonName: "ditto",
           },
           types: [
             {
               type: {
-                name: "grass",
+                name: "normal",
               },
             },
             {
@@ -52,13 +52,13 @@ module.exports = {
           name: item.name,
           species: {
             url:
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-            pokemonName: "ivysaur",
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            pokemonName: "ditto",
           },
           types: [
             {
               type: {
-                name: "grass",
+                name: "normal",
               },
             },
             {
@@ -72,7 +72,7 @@ module.exports = {
 
       res.status(200).json({
         success: true,
-        message: "All Pokemons Data Retrieved",
+        message: "All pokemon that you have",
         result,
       });
     } catch (error) {
@@ -111,7 +111,7 @@ module.exports = {
       const row = await Pokemon.findByIdAndDelete(id);
       res.status(200).json({
         success: true,
-        message: `Pokemons ID: ${id} Deleted`,
+        message: `Pokemons ID: ${id} deleted`,
         row,
       });
     } catch (error) {
